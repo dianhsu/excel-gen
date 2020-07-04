@@ -60,10 +60,11 @@ def main():
     if not (os.path.exists('htmls') and os.path.isdir('htmls')):
         os.mkdir('htmls')
     for file in os.listdir(excel_dir):
-        parser = Parser(os.path.join(excel_dir, file))
-        parser.run()
-        with open(f'htmls/{file}.html', 'w', encoding='utf-8') as f:
-            f.write(parser.html)
+        if file.endswith('.xlsx'):
+            parser = Parser(os.path.join(excel_dir, file))
+            parser.run()
+            with open(f'htmls/{file}.html', 'w', encoding='utf-8') as f:
+                f.write(parser.html)
 
 
 if __name__ == '__main__':
